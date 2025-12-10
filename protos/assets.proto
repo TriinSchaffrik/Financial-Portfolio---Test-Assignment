@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package financial.portfolio.assets;
+
+service AssetService {
+     rpc GetPortfolioList (GetPortfolioListRequest) returns (GetPortfolioListResponse);
+}
+
+message Asset {
+    string id = 1;
+    string logoUrl = 2;
+    string name = 3;
+    double current_price = 4;
+    double percent_change = 5;
+}
+
+message PortfolioSnapshot {
+  int64 timestamp_ms = 1;
+  double total_value = 2;
+}
+
+message GetPortfolioListRequest {}
+
+message GetPortfolioListResponse {
+  repeated Asset assets = 1;
+  repeated PortfolioSnapshot history = 2;
+}
